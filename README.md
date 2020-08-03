@@ -1,6 +1,7 @@
 ## Overview
 Forward proxy with nginx as container.  
 Forward proxy container listens port 8443.
+![image](https://github.com/sota0113/nginx-https-forward-proxy/blob/images/proxy-overview.png)
 
 ## Usage  
 ### 1. Build container image.
