@@ -21,17 +21,11 @@ COPY docker-entrypoint.sh /
 COPY 10-listen-on-ipv6-by-default.sh /docker-entrypoint.d
 COPY 20-envsubst-on-templates.sh /docker-entrypoint.d
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
-EXPOSE 80
-
 STOPSIGNAL SIGTERM
-
-CMD ["nginx", "-g", "daemon off;"]
-
 ## If proxy pod would runs on Docker, comment in 2 lines below.
 ## If proxy pod would runs on Kubernetes, keep 2 lines below commented out due to using ConfigMap.
 
-COPY ./conf.d/default.conf /usr/local/nginx/conf/conf.d/default.conf
-COPY ./nginx/nginx.conf /usr/local/nginx/conf/nginx.conf
+#COPY ./conf.d/default.conf /usr/local/nginx/conf/conf.d/default.conf
+#COPY ./nginx/nginx.conf /usr/local/nginx/conf/nginx.conf
 
 CMD ["/usr/local/nginx/sbin/nginx","-g", "daemon off;"]

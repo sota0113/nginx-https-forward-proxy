@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fp-nginx-conf
+  name: nginx-conf-confd
 data:
   configfile: |-
     # Proxy Server port
