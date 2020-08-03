@@ -1,6 +1,6 @@
 ## Overview
 Forward proxy with nginx as container.  
-Forward proxy container listens port 443 meaning HTTPS protocol.(this protocol and liten port is changable)  
+Forward proxy container listens port 8443.
 
 ## Usage  
 ### 1. Build container image.
@@ -9,15 +9,15 @@ There are two options to build container image.
 (A) forward proxy listening HTTPS connection.(not verified)  
 (B) forward proxy listening HTTP connection.
   
-#### (A) forward proxy listening HTTPS connection  
-1. To make forward proxy container communicate by https, Create encryption files `server.crt` and `server.key`.  
+#### (A) forward proxy listening HTTPS connection (not verified)  
+1. To make forward proxy container communicate by https, Create encryption related files `server.crt` and `server.key`.  
 2. put these file on same level as `Dockerfile`.  
 3. build container image with command below on same level as `Dockerfile`.  
 ```
 $ docker build -t nginx-https-forward-proxy:1.0 ./
 ```
 
-#### (B) forward proxy listening HTTP connection (not verified)  
+#### (B) forward proxy listening HTTP connection 
 1. change directory to `http/Dockerfile`.  
 2. build container image with command below.  
 ```
@@ -26,9 +26,9 @@ $ docker build -t nginx-http-forward-proxy:1.0 ./
   
 ### 2. Deploy container
 There are 2 options to deploy forward proxy container.  
-(A) Deploy on Docker  
-(B) Deploy on Kubernetes  
-#### (A) Deploy on Docker
+(A) Deploy to Docker  
+(B) Deploy to Kubernetes  
+#### (A) Deploy to Docker
 1. run forward proxy container with host port 8443.
 ```
 # (A) forward proxy listening HTTPS connection
@@ -41,7 +41,7 @@ $ docker run -d -p 8443:443 $CONTAINER_IMAGE
 $ curl --proxy-cacert --proxy https://localhost:8443 https://www.google.com
 ```
 
-#### (B) Deploy on Kubernetes
+#### (B) Deploy to Kubernetes
 Apply manifest file `kubernetes/deployment.yaml` and `kubernetes/service.yaml`.
 ```
 $ kubectl apply -f kubernetes/deployment.yaml
